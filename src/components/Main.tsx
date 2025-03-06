@@ -74,7 +74,7 @@ export const Main = () => {
                                                     </div>
                                                 </div>
                                                 <div className="w-full">
-                                                    <button className="w-full text-white bg-[#4b5926] font-semibold border border-2 rounded-full p-1">SIMULE GRÁTIS</button>
+                                                    <button className="w-full text-white bg-[#4b5926] font-semibold border border-2 rounded-full p-2">SIMULE GRÁTIS</button>
                                                 </div>
                                             </form>
                                         </div>
