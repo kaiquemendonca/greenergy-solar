@@ -19,7 +19,7 @@ export const About = () => {
                         <button className="w-full text-white bg-[#4b5926] font-semibold border border-2 rounded-full p-2 mt-9">Leia mais</button>
                     </div>
                     <div className="w-full h-full relative flex justify-end order-1 lg:order-2">
-                        <div className="relative w-full h-full rounded-lg lg:max-w-[480px] 2xl:max-w-[640px] min-h-[200px]">
+                        <div className="relative w-full h-full rounded-lg lg:max-w-[480px]  min-h-[200px]">
                             <img src="/assets/sg.svg" className="object-cover object-[50%_60%] lg:object-center absolute h-full w-full left-0 top-0 right-0 bottom-0" />
                         </div>
                     </div>

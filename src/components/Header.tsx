@@ -80,7 +80,7 @@ export const Header = () => {
                         <div className="w-full max-w-7xl flex flex-col py-2 px-4 md:px-8 md:pb-3 xl:px-0">
                             <div className="w-full h-[1px] bg-[#00000026]" ></div>
                             <ul className="p-3 text-sm md:text-xl text-gray-500 md:flex md:justify-between md:pt-5">
-                                <li className="py-1 md:px-5 cursor-pointer">Que Somos</li>
+                                <li className="py-1 md:px-5 cursor-pointer"><a href="/Header">Quem Somos</a></li>
                                 <li className="py-1 md:px-5 cursor-pointer">Soluções</li>
                                 <li className="py-1 md:px-5 cursor-pointer">Depoimentos</li>
                                 <li className="py-1 md:px-5 cursor-pointer">Projetos</li>
