@@ -176,11 +176,9 @@ export const Main = () => {
     return (
         <div className="w-full flex flex-col scroll-smooth">
             <div className="w-full h-[150svh] md:h-screen md:snap-always md:snap-start relative flex md:px-8">
-                <img className="brightness-50  md:brightness-100 object-cover object-right-top -z-20 absolute top-0 bottom-0 left-0 right-0 w-full h-screen"
-                    src="/assets/bg-painel.jpg"
-                    decoding="async"
-                    data-nimg="fill" />
-                <div className="w-full max-w-[1280px] mx-auto md:flex md:items-center lg:px-0 xl:flex xl:items-center">
+                <img className="brightness-50  md:brightness-100 object-cover object-right-top z-20 absolute top-0 bottom-0 left-0 right-0 w-full h-screen"
+                    src="/assets/bg-painel.jpg"/>
+                <div className="w-full max-w-[1280px] mx-auto md:flex md:items-center lg:px-0 xl:flex xl:items-center z-50">
                     <div className="w-full flex flex-col mx-auto md:flex-row md:justify-between md:mt-[56px]">
                         <div className="relative h-[100svh] md:h-full snap-always snap-start md:snap-align-none flex pt-14 md:pt-0 lg:flex">
                             <div className="w-full max-w-[305px] md:hidden bottom-24 left-1/2 -translate-x-1/2 absolute self-center">

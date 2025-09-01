@@ -24,7 +24,7 @@ export const Projects = () => {
     ]
 
     return (
-        <div id="projects" className="w-full overflow-hidden py-10 bg-white px-4 md:flex md:justify-center md:items-center">
+        <div id="projects" className="w-full overflow-hidden py-10 bg-white px-4 md:flex md:justify-center md:items-center ">
             <div className='xl:max-w-7xl'>
 
                 <div className="w-full h-full flex flex-col justify-center order-2 lg:order-1">
