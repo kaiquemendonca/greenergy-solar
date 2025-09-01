@@ -175,7 +175,7 @@ export const Main = () => {
 
     return (
         <div className="w-full flex flex-col scroll-smooth">
-            <div className="w-full h-[150svh] md:h-screen md:snap-always md:snap-start relative flex md:px-8">
+            <div className="w-full h-[180svh] md:h-screen md:snap-always md:snap-start relative flex md:px-8">
                 <img className="brightness-50  md:brightness-100 object-cover object-right-top z-20 absolute top-0 bottom-0 left-0 right-0 w-full h-screen"
                     src="/assets/bg-painel.jpg"/>
                 <div className="w-full max-w-[1280px] mx-auto md:flex md:items-center lg:px-0 xl:flex xl:items-center z-50">
@@ -205,8 +205,8 @@ export const Main = () => {
                                     onSubmit={simular}
                                     className="bg-white shadow-lg rounded-2xl p-6 space-y-4"
                                 >
-                                    <h2 className="text-xl font-bold">Calculadora Solar</h2>
-                                    <div className="grid grid-cols-2 gap-4">
+                                    <h2 className="text-xl font-bold text-[#4b5926]">Calculadora Solar</h2>
+                                    <div className="grid grid-cols-2 gap-4 text-gray-700">
                                         <input
                                             type="text"
                                             name="cep"
@@ -296,7 +296,7 @@ export const Main = () => {
 
                                     <button
                                         onClick={() => setResultado(null)}
-                                        className="mt-4 bg-gray-300 px-4 py-2 rounded-lg hover:bg-gray-400"
+                                        className="mt-4 bg-[#4b5926] px-4 py-2 rounded-lg hover:opacity-90 text-white transition"
                                     >
                                         Refazer Simulação
                                     </button>
