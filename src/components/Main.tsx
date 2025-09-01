@@ -176,7 +176,7 @@ export const Main = () => {
     return (
         <div className="w-full flex flex-col scroll-smooth">
             <div className="w-full h-[160svh] md:h-screen md:snap-always md:snap-start relative flex md:px-8">
-                <img className="brightness-50  md:brightness-100 object-cover object-right-top z-20 absolute top-0 bottom-0 left-0 right-0 w-full h-[80svh]"
+                <img className="brightness-50  md:brightness-100 object-cover object-right-top z-20 absolute top-0 bottom-0 left-0 right-0 w-full h-[100svh]"
                     src="/assets/bg-painel.jpg"/>
                 <div className="w-full max-w-[1280px] mx-auto md:flex md:items-center lg:px-0 xl:flex xl:items-center z-50">
                     <div className="w-full flex flex-col mx-auto md:flex-row md:justify-between md:mt-[56px]">
