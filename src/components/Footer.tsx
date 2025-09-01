@@ -26,7 +26,7 @@ export const Footer = () => {
                 </div>
 
             </div>
-            <div className="size-14 z-60 fixed bottom-6 right-6 lg:bottom-14 lg:right-14 animate-jump animate-infinite animate-duration-1000">
+            <div className="size-14 z-99 fixed bottom-6 right-6 lg:bottom-14 lg:right-14 animate-jump animate-infinite animate-duration-1000">
                 <a target="_blank" href="https://api.whatsapp.com/send?l=pt&phone=5582982220914">
                     <img className="w-full" src="/assets/icons-whatsapp1.svg" />
                 </a>
