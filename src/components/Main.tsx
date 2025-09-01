@@ -188,7 +188,7 @@ export const Main = () => {
                             </div>
                             <div className="px-4 md:px-0 mb-10 lg:mb-0 lg:mr-[4.8rem]">
                                 <div className="w-full">
-                                    <a className="inline-block mt-[180px] md:mt-5  shadow-lg p-2 rounded-lg bg-white/40 backdrop-blur-sm">
+                                    <a className="inline-block mt-[120px] md:mt-5  shadow-lg p-2 rounded-lg bg-white/40 backdrop-blur-sm">
                                         <img height={28} width={300} alt="Solar Greenergy" src="/assets/solar 1.png" />
                                     </a>
                                     <p className=" text-[35px] leading-[43px] tracking-wide font-normal text-white md:text-[40px] md:leading-[42px] lg:text-[40px] lg:leading-[60px] xl:text-[50px] mt-[20px] md:mt-5 lg:mt-[2.25rem]">

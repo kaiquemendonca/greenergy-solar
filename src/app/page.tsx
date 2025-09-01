@@ -6,7 +6,7 @@ import { Projects } from "@/components/Projects";
 
 export default function Home() {
   return (
-    <div className="flex flex-col !scroll-smooth">
+    <div className="flex flex-col !scroll-smooth bg-white">
       <Header/>
       <Main/>
       <About/>

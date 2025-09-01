@@ -8,7 +8,7 @@ export const Footer = () => {
                     </div>
                     <div className="flex order-3 flex-1 mb-7 items-center justify-center lg:order-2 lg:mb-0">
                         <div className="w-2/3">
-                            <h4 className="text-lg font-bold mb-3" >Solicite um orçamento gratuito e reduza a sua conta de energia em até 90%</h4>
+                            <h4 className="text-lg font-bold mb-3 text-black" >Solicite um orçamento gratuito e reduza a sua conta de energia em até 90%</h4>
                             <p className="w-full max-w-screen-xl text-[0.625rem] leading-[0.875rem] text-gray-700 text-center md:font-semibold md:text-[0.8125rem] md:leading-[1.125rem] md:text-gray-700 md:text-left">
                                 Kaíque Mendonça © 2025.<br /> Todos os direitos reservados.
                             </p>

@@ -29,7 +29,7 @@ export const Projects = () => {
 
                 <div className="w-full h-full flex flex-col justify-center order-2 lg:order-1">
                     <h1 className="text-[#4b5926] font-bold text-lg uppercase mb-6">Projetos</h1>
-                    <h2 className="w-full text-2xl md:text-[35px] leading-[30px] lg:text-[30px] lg:leading-[35px] 2xl:text-[35px] tracking-[-2.5%] text-v3-gray-600 mb-10 md:mb-10 lg:mb-10 lg:text-left lg:relative lg:top-0 lg:w-full lg:px-0">Clientes inteligentes que decidicidiram economizar de verdade 💸 e ainda ajudar o planeta 🌎</h2>
+                    <h2 className="w-full text-2xl md:text-[35px] leading-[30px] lg:text-[30px] lg:leading-[35px] 2xl:text-[35px] tracking-[-2.5%] text-gray-600 mb-10 md:mb-10 lg:mb-10 lg:text-left lg:relative lg:top-0 lg:w-full lg:px-0">Clientes inteligentes que decidicidiram economizar de verdade 💸 e ainda ajudar o planeta 🌎</h2>
                 </div>
                 <Swiper
                     modules={[Autoplay]}
