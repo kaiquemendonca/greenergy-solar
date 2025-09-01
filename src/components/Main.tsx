@@ -176,7 +176,7 @@ export const Main = () => {
     return (
         <div className="w-full flex flex-col scroll-smooth">
             <div className="w-full h-[180svh] md:h-screen md:snap-always md:snap-start relative flex md:px-8">
-                <img className="brightness-50  md:brightness-100 object-cover object-right-top z-20 absolute top-0 bottom-0 left-0 right-0 w-full h-screen"
+                <img className="brightness-50  md:brightness-100 object-cover object-right-top z-20 absolute top-0 bottom-0 left-0 right-0 w-full h-[150svh]"
                     src="/assets/bg-painel.jpg"/>
                 <div className="w-full max-w-[1280px] mx-auto md:flex md:items-center lg:px-0 xl:flex xl:items-center z-50">
                     <div className="w-full flex flex-col mx-auto md:flex-row md:justify-between md:mt-[56px]">
@@ -264,7 +264,7 @@ export const Main = () => {
                                     </button>
                                 </form>
                             ) : (
-                                <div className="bg-white shadow-lg rounded-2xl p-6">
+                                <div className="bg-white shadow-lg rounded-2xl p-6 text-gray-700">
                                     <h2 className="text-xl font-bold mb-4">Resumo da Simulação</h2>
                                     <p>
                                         <b>Tarifa considerada:</b> R$ {resultado.tarifa.toFixed(2)} / kWh
