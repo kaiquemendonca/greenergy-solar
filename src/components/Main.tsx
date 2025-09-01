@@ -1,13 +1,181 @@
 'use client'
 import { useState } from "react";
 
+// ------------------
+// Lista de concessionárias
+// ------------------
+const concessionariasPorUF: Record<string, string[]> = {
+    AC: ["Energisa Acre"],
+    AL: ["Equatorial Alagoas"],
+    AM: ["Amazonas Energia"],
+    AP: ["CEA Equatorial Amapá"],
+    BA: ["Neoenergia Coelba"],
+    CE: ["Enel Ceará"],
+    DF: ["Neoenergia Brasília"],
+    ES: ["EDP Espírito Santo", "ESCELSA"],
+    GO: ["Equatorial Goiás"],
+    MA: ["Equatorial Maranhão"],
+    MG: [
+        "CEMIG",
+        "Energisa Minas Gerais",
+        "DME Distribuição",
+        "CEMIG Sul",
+        "CEMIG Leste",
+    ],
+    MS: ["Energisa Mato Grosso do Sul"],
+    MT: ["Energisa Mato Grosso"],
+    PA: ["Equatorial Pará"],
+    PB: ["Energisa Paraíba"],
+    PE: ["Neoenergia Pernambuco"],
+    PI: ["Equatorial Piauí"],
+    PR: ["Copel Distribuição"],
+    RJ: ["Light", "Enel Rio", "ENEVA Distribuidora RJ"],
+    RN: ["Neoenergia Cosern"],
+    RO: ["Energisa Rondônia"],
+    RR: ["Roraima Energia"],
+    RS: ["CEEE Equatorial", "RGE Sul", "RGE Norte"],
+    SC: ["Celesc"],
+    SE: ["Energisa Sergipe"],
+    SP: [
+        "Enel São Paulo",
+        "CPFL Paulista",
+        "CPFL Piratininga",
+        "CPFL Santa Cruz",
+        "Elektro",
+        "EDP São Paulo",
+        "AES Tietê",
+    ],
+    TO: ["Energisa Tocantins"],
+};
+
+// ------------------
+// Tarifas médias por concessionária (R$/kWh)
+// ------------------
+const tarifasEnergia: Record<string, Record<string, number>> = {
+    AL: { "Equatorial Alagoas": 0.92 },
+    SP: {
+        "Enel São Paulo": 0.96,
+        "CPFL Paulista": 0.94,
+        "CPFL Piratininga": 0.95,
+        "CPFL Santa Cruz": 0.93,
+        Elektro: 0.92,
+        "EDP São Paulo": 0.91,
+        "AES Tietê": 0.90,
+    },
+    RJ: { Light: 1.02, "Enel Rio": 0.99, "ENEVA Distribuidora RJ": 0.97 },
+    MG: {
+        CEMIG: 0.89,
+        "Energisa Minas Gerais": 0.91,
+        "DME Distribuição": 0.88,
+        "CEMIG Sul": 0.90,
+        "CEMIG Leste": 0.89,
+    },
+    PE: { "Neoenergia Pernambuco": 0.93 },
+    BA: { "Neoenergia Coelba": 0.95 },
+    CE: { "Enel Ceará": 0.94 },
+    RS: { "CEEE Equatorial": 0.90, "RGE Sul": 0.91, "RGE Norte": 0.92 },
+    SC: { Celesc: 0.89 },
+    DF: { "Neoenergia Brasília": 0.95 },
+    GO: { "Equatorial Goiás": 0.92 },
+    MA: { "Equatorial Maranhão": 0.91 },
+    PA: { "Equatorial Pará": 0.92 },
+    PI: { "Equatorial Piauí": 0.93 },
+    PB: { "Energisa Paraíba": 0.92 },
+    RN: { "Neoenergia Cosern": 0.94 },
+    SE: { "Energisa Sergipe": 0.91 },
+    AM: { "Amazonas Energia": 0.98 },
+    AC: { "Energisa Acre": 0.97 },
+    RO: { "Energisa Rondônia": 0.96 },
+    RR: { "Roraima Energia": 1.05 },
+    MT: { "Energisa Mato Grosso": 0.94 },
+    MS: { "Energisa Mato Grosso do Sul": 0.93 },
+    TO: { "Energisa Tocantins": 0.92 },
+    AP: { "CEA Equatorial Amapá": 1.0 },
+};
+
 export const Main = () => {
 
+    const [form, setForm] = useState({
+        cep: "",
+        uf: "",
+        conta: "",
+        concessionaria: "",
+        email: "",
+    });
+
+    const [resultado, setResultado] = useState<any>(null);
+    const [concessionarias, setConcessionarias] = useState<string[]>([]);
+
+    // Buscar UF pelo CEP
+    const buscarCEP = async (cep: string) => {
+        if (cep.length < 8) return;
+        try {
+            const res = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+            const data = await res.json();
+            if (data.uf) {
+                setForm((prev) => ({ ...prev, uf: data.uf }));
+                setConcessionarias(concessionariasPorUF[data.uf] || []);
+            }
+        } catch (error) {
+            console.error("Erro ao buscar CEP:", error);
+        }
+    };
+
+    // Handle inputs
+    const handleChange = (
+        e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    ) => {
+        const { name, value } = e.target;
+        setForm({ ...form, [name]: value });
+
+        if (name === "cep") {
+            const cepNum = value.replace(/\D/g, "");
+            if (cepNum.length === 8) buscarCEP(cepNum);
+        }
+    };
+
+    // Simulação
+    const simular = (e: React.FormEvent) => {
+        e.preventDefault();
+
+        const conta = Number(form.conta);
+        if (conta <= 0 || !form.uf || !form.concessionaria) return;
+
+        const tarifa =
+            tarifasEnergia[form.uf]?.[form.concessionaria] || 0.95; // fallback
+        const consumoMensal = conta / tarifa; // kWh/mês
+
+        const producaoPorKWp = 130; // kWh/mês por kWp
+        const potenciaNecessaria = consumoMensal / producaoPorKWp;
+
+        const modulos = Math.ceil(potenciaNecessaria / 0.555);
+        const potenciaFinal = (modulos * 0.555).toFixed(2);
+
+        const producaoMensal = modulos * 55;
+        const area = (modulos * 3.3).toFixed(1);
+
+        const economiaAnual = conta * 12;
+        const precoMin = potenciaNecessaria * 2400;
+        const precoMax = potenciaNecessaria * 3000;
+        const payback = Math.round(precoMax / economiaAnual);
+
+        setResultado({
+            economiaAnual,
+            payback,
+            area,
+            potenciaFinal,
+            modulos,
+            producaoMensal,
+            precoMin,
+            precoMax,
+            tarifa,
+        });
+    };
 
 
     return (
         <div className="w-full flex flex-col scroll-smooth">
-            <div className="w-full h-[200svh] md:h-screen md:snap-always md:snap-start relative flex md:px-8">
+            <div className="w-full h-[150svh] md:h-screen md:snap-always md:snap-start relative flex md:px-8">
                 <img className="brightness-50  md:brightness-100 object-cover object-right-top -z-20 absolute top-0 bottom-0 left-0 right-0 w-full h-screen"
                     src="/assets/bg-painel.jpg"
                     decoding="async"
@@ -16,11 +184,14 @@ export const Main = () => {
                     <div className="w-full flex flex-col mx-auto md:flex-row md:justify-between md:mt-[56px]">
                         <div className="relative h-[100svh] md:h-full snap-always snap-start md:snap-align-none flex pt-14 md:pt-0 lg:flex">
                             <div className="w-full max-w-[305px] md:hidden bottom-24 left-1/2 -translate-x-1/2 absolute self-center">
-                                <button className="w-full text-white font-semibold border border-2 rounded-full p-1">FAÇA UMA SIMULAÇÃO</button>
+                                <button className="w-full text-white font-semibold border border-2 rounded-full p-1"><a href="#calc">FAÇA UMA SIMULAÇÃO</a></button>
                             </div>
                             <div className="px-4 md:px-0 mb-10 lg:mb-0 lg:mr-[4.8rem]">
                                 <div className="w-full">
-                                    <p className=" text-[35px] leading-[43px] tracking-wide font-normal text-white md:text-[40px] md:leading-[42px] lg:text-[40px] lg:leading-[60px] xl:text-[50px] mt-[120px] md:mt-5 lg:mt-[2.25rem]">
+                                    <a className="inline-block mt-[180px] md:mt-5  shadow-lg p-2 rounded-lg bg-white/40 backdrop-blur-sm">
+                                        <img height={28} width={300} alt="Solar Greenergy" src="/assets/solar 1.png" />
+                                    </a>
+                                    <p className=" text-[35px] leading-[43px] tracking-wide font-normal text-white md:text-[40px] md:leading-[42px] lg:text-[40px] lg:leading-[60px] xl:text-[50px] mt-[20px] md:mt-5 lg:mt-[2.25rem]">
                                         Sua energia,
                                         <br></br>
                                         seu futuro brilhante.
@@ -30,58 +201,109 @@ export const Main = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="w-full md:flex md:justify-end md:max-w-[360px] md:h-[600px] md:overflow-hidden lg:h-[614px] lg:justify-end xl:justify-center xl:h-[461px] 1.5xl:h-[614px] lg:max-w-[452px] xl:max-w-[360px] 1.5xl:max-w-[452px]">
-                            <div className="w-full">
-                                <div className="w-full snap-always snap-start md:snap-align-none h-[100svh] bg-gray-100 pt-16 pb-4 px-4 overflow-hidden md:h-full md:p-3 md:rounded-2xl lg:pt-7 lg:overflow-visible xl:pt-3 1.5xl:pt-7">
-                                    <div className="w-full h-full flex flex-col">
-                                        <p className="text-[1.75rem] leading-9 font-semibold text-gray-600 text-center xl:text-xl xl:leading-none 1.5xl:text-[1.75rem] xl:mb-1 ">Calculadora Solar</p>
-                                        <p className="text-xs leading-[0.875rem] text-gray-500 text-center lg:text-xs xl:text-[0.625rem] xl:leading-[0.875rem] 1.5xl:text-xs 1.5xl:leading-[0.875rem]">Simule seu gerador de energia solar</p>
-                                        <div className="mt-3">
-                                            <div className="grid grid-cols-2 gap-x-[0.125rem] px-5 xl:gap-x-1 xl:px-0">
-                                                <div className="">
-                                                    <p className="font-myriad text-sm leading-none lg:text-sm lg:leading-none xl:text-xs xl:leading-none 1.5xl:text-sm 1.5xl:leading-none text-center uppercase text-[#4b5926] font-semibold">Simulação</p>
-                                                    <div className="w-full h-[5px] mt-0.5 rounded-[5px] lg:h-[5px] xl:h-0.5 1.5xl:h-[5px] bg-[#4b5926]"></div>
-                                                </div>
-                                                <div className="">
-                                                    <p className="font-myriad text-sm leading-none lg:text-sm lg:leading-none xl:text-xs xl:leading-none 1.5xl:text-sm 1.5xl:leading-none text-center uppercase text-gray-300 font-semibold">Resumo</p>
-                                                    <div className="w-full h-[5px] mt-0.5 rounded-[5px] lg:h-[5px] xl:h-0.5 1.5xl:h-[5px] bg-gray-300"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="w-full flex-1 py-4 px-[15.5px] overflow-hidden bg-white rounded-lg lg:py-4 lg:px-8 xl:pt-3 xl:pb-2 xl:px-[15.5px] 1.5xl:px-8 1.5xl:py-4">
-                                            <form className="flex flex-col justify-between md:gap-[30px] h-full xl:items-center">
-                                                <div className="w-full flex flex-col gap-y-4 1.5xl:gap-y-5">
-                                                    <div className="flex gap-3">
-                                                        <div className="relative flex flex-col flex-[1_1_200px] lg:flex-[1_1_150px] xl:flex-[1_1_168px]">
-                                                            <label className="font-myriad ml-4 text-xs pb-0.5 font-medium lg:text-xs lg:leading-[0.875rem] xl:text-[0.625rem] xl:leading-3 1.5xl:text-xs 1.5xl: 1.5xl:leading-[0.875rem] uppercase tracking-wide">CEP</label>
-                                                            <input className="font-myriad rounded-full w-full h-[32px] px-4 pt-[8px] pb-[6px] text-base leading-none border border-v3-gray-250 rounded-4xl lg:h-[32px] lg:text-xs lg:leading-none placeholder:uppercase placeholder:text-v3-gray-250 disabled:bg-[#E3E3E3] disabled:text-[#0000004D] disabled:border-v3-gray-250" placeholder="DIGITE SEU CEP" type="text" name="CEP"></input>
-                                                        </div>
-                                                        <div className="relative flex flex-col flex-[0_1_73px] lg:flex-[0_1_112px] xl:flex-[1_1_52px]">
-                                                            <label className="font-myriad ml-4 text-xs pb-0.5 font-medium lg:text-xs lg:leading-[0.875rem] xl:text-[0.625rem] xl:leading-3 1.5xl:text-xs 1.5xl: 1.5xl:leading-[0.875rem] uppercase tracking-wide">UF</label>
-                                                            <input className="font-myriad w-full rounded-full h-[32px] px-4 pt-[8px] pb-[6px] text-base leading-none border border-v3-gray-250 rounded-4xl lg:h-[32px] lg:text-xs lg:leading-none placeholder:uppercase placeholder:text-v3-gray-250 disabled:bg-[#E3E3E3] disabled:text-[#0000004D] disabled:border-v3-gray-250" disabled placeholder="UF" name="state"></input>
-                                                        </div>
-                                                    </div>
-                                                    <div className="relative flex flex-col w-full">
-                                                        <label className="font-myriad ml-4 text-xs pb-0.5 font-medium lg:text-xs lg:leading-[0.875rem] xl:text-[0.625rem] xl:leading-3 1.5xl:text-xs 1.5xl: 1.5xl:leading-[0.875rem] uppercase tracking-wide">VALOR DA CONTA DE LUZ</label>
-                                                        <input className="font-myriad w-full rounded-full h-[32px] px-4 pt-[8px] pb-[6px] text-base leading-none border border-v3-gray-250 rounded-4xl lg:h-[32px] lg:text-xs lg:leading-none placeholder:uppercase placeholder:text-v3-gray-250 disabled:bg-[#E3E3E3] disabled:text-[#0000004D] disabled:border-v3-gray-250" placeholder="R$ 0,00" value={0}></input>
-                                                    </div>
-                                                    <div className="flex flex-col w-full">
-                                                        <label className="font-myriad ml-4 text-xs pb-0.5 font-medium lg:text-xs lg:leading-[0.875rem] xl:text-[0.625rem] xl:leading-3 1.5xl:text-xs 1.5xl: 1.5xl:leading-[0.875rem] uppercase tracking-wide">CONCESSIONÁRIA</label>
-                                                    </div>
-                                                    <div className="relative flex flex-col w-full">
-                                                        <label className="font-myriad ml-4 text-xs pb-0.5 font-medium lg:text-xs lg:leading-[0.875rem] xl:text-[0.625rem] xl:leading-3 1.5xl:text-xs 1.5xl: 1.5xl:leading-[0.875rem] uppercase tracking-wide">E-MAIL</label>
-                                                        <input className="font-myriad rounded-full w-full h-[32px] px-4 pt-[8px] pb-[6px] text-base leading-none border border-v3-gray-250 rounded-4xl lg:h-[32px] lg:text-xs lg:leading-none placeholder:uppercase placeholder:text-v3-gray-250 disabled:bg-[#E3E3E3] disabled:text-[#0000004D] disabled:border-v3-gray-250" name="email" placeholder="DIGITE SEU EMAIL"></input>
-                                                    </div>
-                                                </div>
-                                                <div className="w-full">
-                                                    <button className="w-full text-white bg-[#4b5926] font-semibold border border-2 rounded-full p-2">SIMULE GRÁTIS</button>
-                                                </div>
-                                            </form>
-                                        </div>
+                        <div id="calc" className="max-w-3xl mx-auto p-6">
+                            {!resultado ? (
+                                <form
+                                    onSubmit={simular}
+                                    className="bg-white shadow-lg rounded-2xl p-6 space-y-4"
+                                >
+                                    <h2 className="text-xl font-bold">Calculadora Solar</h2>
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <input
+                                            type="text"
+                                            name="cep"
+                                            placeholder="CEP"
+                                            value={form.cep}
+                                            onChange={handleChange}
+                                            className="border p-2 rounded-lg w-full"
+                                        />
+                                        <input
+                                            type="text"
+                                            name="uf"
+                                            placeholder="UF"
+                                            value={form.uf}
+                                            readOnly
+                                            className="border p-2 rounded-lg w-full bg-gray-100"
+                                        />
+                                        <input
+                                            type="number"
+                                            name="conta"
+                                            placeholder="Valor da Conta de Luz (R$)"
+                                            value={form.conta}
+                                            onChange={handleChange}
+                                            className="border p-2 rounded-lg w-full text-sm"
+                                        />
 
+                                        <select
+                                            name="concessionaria"
+                                            value={form.concessionaria}
+                                            onChange={handleChange}
+                                            className="border p-2 rounded-lg w-full text-sm"
+                                            disabled={concessionarias.length === 0}
+                                        >
+                                            <option value="">Selecione a Concessionária</option>
+                                            {concessionarias.map((c, i) => (
+                                                <option key={i} value={c}>
+                                                    {c}
+                                                </option>
+                                            ))}
+                                        </select>
+
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            placeholder="E-mail"
+                                            value={form.email}
+                                            onChange={handleChange}
+                                            className="border p-2 rounded-lg col-span-2"
+                                        />
                                     </div>
+                                    <button
+                                        type="submit"
+                                        className="bg-[#4b5926] text-white px-4 py-2 rounded-lg w-full hover:bg-opacity-90 transition"
+                                    >
+                                        Simule Grátis!
+                                    </button>
+                                </form>
+                            ) : (
+                                <div className="bg-white shadow-lg rounded-2xl p-6">
+                                    <h2 className="text-xl font-bold mb-4">Resumo da Simulação</h2>
+                                    <p>
+                                        <b>Tarifa considerada:</b> R$ {resultado.tarifa.toFixed(2)} / kWh
+                                    </p>
+                                    <p>
+                                        <b>Economia Anual Estimada:</b> R${" "}
+                                        {resultado.economiaAnual.toLocaleString("pt-BR")}
+                                    </p>
+                                    <p>
+                                        <b>Payback Estimado:</b> {resultado.payback} meses
+                                    </p>
+                                    <p>
+                                        <b>Área Necessária:</b> {resultado.area} m²
+                                    </p>
+                                    <p>
+                                        <b>Potência do Kit:</b> {resultado.potenciaFinal} kWp
+                                    </p>
+                                    <p>
+                                        <b>Quantidade de Módulos:</b> {resultado.modulos}
+                                    </p>
+                                    <p>
+                                        <b>Produção Mensal Estimada:</b> {resultado.producaoMensal} kWh/mês
+                                    </p>
+                                    <p>
+                                        <b>Valor Estimado do Sistema:</b> R${" "}
+                                        {resultado.precoMin.toLocaleString("pt-BR")} - R${" "}
+                                        {resultado.precoMax.toLocaleString("pt-BR")}
+                                    </p>
+
+                                    <button
+                                        onClick={() => setResultado(null)}
+                                        className="mt-4 bg-gray-300 px-4 py-2 rounded-lg hover:bg-gray-400"
+                                    >
+                                        Refazer Simulação
+                                    </button>
                                 </div>
-                            </div>
+                            )}
                         </div>
                     </div>
                 </div>

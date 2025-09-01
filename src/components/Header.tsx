@@ -67,7 +67,7 @@ export const Header = () => {
                     <div className="order-1 md:order-2 flex flex-col items-center justify-center">
                         <h1 className="h-7">
                             <a className="inline-block">
-                                <img height={28} width={100} alt="Solar Greenergy" src="/assets/solar-fernanda3.svg" />
+                                <img height={28} width={100} alt="Solar Greenergy" src="/assets/solar 1.png" />
                             </a>
                         </h1>
                     </div>
@@ -75,17 +75,15 @@ export const Header = () => {
                 </div>
             </div>
             {modalMenu &&
-                <div ref={menuTab} className="animate-fade animate-once animate-duration-[1000ms] w-full absolute flex flex-col items-center bg-white opacity-100  z-40 pt-14 xl:px-8 md:border-b-[1px] md:border-gray-50">
+                <div ref={menuTab} className="animate-fade animate-once animate-duration-[800ms] w-full absolute flex flex-col items-center bg-white opacity-100  z-40 pt-14 xl:px-8 md:border-b-[1px] md:border-gray-50">
                     <div className="w-full flex flex-col items-center overflow-hidden">
                         <div className="w-full max-w-7xl flex flex-col py-2 px-4 md:px-8 md:pb-3 xl:px-0">
                             <div className="w-full h-[1px] bg-[#00000026]" ></div>
                             <ul className="p-3 text-sm md:text-xl text-gray-500 md:flex md:justify-between md:pt-5">
-                                <li className="py-1 md:px-5 cursor-pointer"><a href="/Header">Quem Somos</a></li>
-                                <li className="py-1 md:px-5 cursor-pointer">Soluções</li>
-                                <li className="py-1 md:px-5 cursor-pointer">Depoimentos</li>
-                                <li className="py-1 md:px-5 cursor-pointer">Projetos</li>
-                                <li className="py-1 md:px-5 cursor-pointer">Calculadora</li>
-                                <li className="py-1 md:px-5 cursor-pointer">Contato</li>
+                                <li className="py-1 md:px-5 cursor-pointer hover:text-[#4b5926]"><a href="#about">Quem Somos</a></li>
+                                <li className="py-1 md:px-5 cursor-pointer hover:text-[#4b5926]"><a href="#projects">Projetos</a></li>
+                                <li className="py-1 md:px-5 cursor-pointer hover:text-[#4b5926]"><a href="#calc">Calculadora</a></li>
+                                <li className="py-1 md:px-5 cursor-pointer hover:text-[#4b5926]"><a href="#footer">Contato</a></li>
                             </ul>
                         </div>
 

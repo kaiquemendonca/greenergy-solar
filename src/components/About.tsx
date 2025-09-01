@@ -1,6 +1,6 @@
 export const About = () => {
     return (
-        <div className="w-full md:h-[100svh] flex md:snap-always md:snap-start justify-center md:overflow-hidden pt-16 px-4 md:px-8">
+        <div id="about" className="w-full md:h-[100svh] flex md:snap-always md:snap-start justify-center md:overflow-hidden pt-16 px-4 md:px-8">
             <div className="w-full xl:max-w-7xl flex items-center justify-center">
                 
                 <div className="w-full h-full flex flex-col lg:grid lg:grid-cols-2 gap-4 md:gap-8 lg:gap-2 lg:relative pb-12">
@@ -16,7 +16,7 @@ export const About = () => {
                             <li className="flex items-center "><span className="pr-2 size-7 flex"><img src="/assets/check.svg"/></span>Integração de usinas solares fotovoltaicas</li>
                             
                         </ul>
-                        <button className="w-full text-white bg-[#4b5926] font-semibold border border-2 rounded-full p-2 mt-9">Leia mais</button>
+                        <button className="w-full text-white bg-[#4b5926] font-semibold border border-2 rounded-full p-2 mt-9">LEIA MAIS</button>
                     </div>
                     <div className="w-full h-full relative flex justify-end order-1 lg:order-2">
                         <div className="relative w-full h-full rounded-lg lg:max-w-[480px]  min-h-[200px]">
