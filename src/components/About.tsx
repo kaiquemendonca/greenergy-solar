@@ -1,13 +1,13 @@
 export const About = () => {
     return (
-        <div id="about" className="w-full md:h-[100svh] flex md:snap-always md:snap-start justify-center md:overflow-hidden pt-16 px-4 md:px-8">
+        <div id="about" className="w-full md:h-[100svh] flex md:snap-always md:snap-start justify-center md:overflow-hidden pt-16 px-4 md:px-8 bg-white">
             <div className="w-full xl:max-w-7xl flex items-center justify-center">
                 
                 <div className="w-full h-full flex flex-col lg:grid lg:grid-cols-2 gap-4 md:gap-8 lg:gap-2 lg:relative pb-12">
                     <div className="w-full h-full flex flex-col justify-center order-2 lg:order-1">
                         <h1 className="text-[#4b5926] font-bold text-lg uppercase mb-6">Sobre nós</h1>
-                        <h2 className="w-full text-2xl md:text-[35px] leading-[30px] lg:text-[30px] lg:leading-[35px] 2xl:text-[35px] tracking-[-2.5%] text-v3-gray-600 mb-10 md:mb-10 lg:mb-10 lg:text-left lg:relative lg:top-0 lg:w-full lg:px-0">Solar Greenergy: Líder em Soluções Sustentáveis</h2>
-                        <h4 className="text-sm leading-[25px] mb-4">A Solar Greenergy, fundada em 2021, busca promover a independência financeira para pessoas e empresas por meio do desenvolvimento tecnológico e sustentável.
+                        <h2 className="w-full text-2xl md:text-[35px] leading-[30px] lg:text-[30px] lg:leading-[35px] 2xl:text-[35px] tracking-[-2.5%] text-gray-600 mb-10 md:mb-10 lg:mb-10 lg:text-left lg:relative lg:top-0 lg:w-full lg:px-0">Solar Greenergy: Líder em Soluções Sustentáveis</h2>
+                        <h4 className="text-sm leading-[25px] mb-4 text-gray-600">A Solar Greenergy, fundada em 2021, busca promover a independência financeira para pessoas e empresas por meio do desenvolvimento tecnológico e sustentável.
                             Especializados em usinas solares fotovoltaicas, oferecemos um serviço completo, incluindo venda, homologação, instalação, monitoramento e manutenção.
                         </h4>
                         <ul className="font-bold text-sm leading-[14px] md:text-base md:leading-[19px] xl:text-lg xl:leading-[22px] text-black space-y-2.5 md:space-y-4 2xl:space-y-6">

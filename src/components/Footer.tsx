@@ -1,7 +1,7 @@
 export const Footer = () => {
     return (
         <>
-            <div id="footer" className="w-full flex flex-col items-center justify-center bg-[#F9F9F9] xl:flex-row mt-16">
+            <div id="footer" className="w-full flex flex-col items-center justify-center bg-[#F9F9F9] xl:flex-row mt-16 bg-white">
                 <div className="w-full max-w-screen-xl flex flex-col  border-b border-solid border-gray-100 pb-6 mb-4 md:flex-row md:gap-8 md:pb-8 md:mb-8 lg:gap-[38px] xl:flex-row xl:justify-between">
                     <div className="flex flex-1 mb-7 items-center justify-center lg:mb-0">
                         <img className="" src="/assets/solar-fernanda3.svg" />
