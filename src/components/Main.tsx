@@ -127,9 +127,9 @@ const InputField = ({
   const floating = useFloating(!!value);
   return (
     <div className="relative w-full">
-      <motion.label htmlFor={id} {...floating}>
+      <label htmlFor={id} {...floating}>
         {label}
-      </motion.label>
+      </label>
       <input
         id={id}
         name={name}
@@ -152,9 +152,9 @@ const SelectField = ({
   const floating = useFloating(!!value);
   return (
     <div className="relative w-full">
-      <motion.label htmlFor={id} {...floating}>
+      <label htmlFor={id} {...floating}>
         {label}
-      </motion.label>
+      </label>
       <select
         id={id}
         name={name}
