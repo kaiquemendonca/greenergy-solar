@@ -16,11 +16,13 @@ import { EffectFade, EffectCoverflow } from 'swiper/modules';
 export const Projects = () => {
 
     const slides = [
-        { id: 1, image: '/assets/foto1.png' },
-        { id: 2, image: '/assets/foto2.png' },
-        { id: 3, image: '/assets/foto4.png' },
-        { id: 4, image: '/assets/foto5.png' },
-        { id: 5, image: '/assets/foto6.png' }
+        { id: 1, image: '/assets/1.jpg' },
+        { id: 2, image: '/assets/2.jpg' },
+        { id: 3, image: '/assets/3.jpg' },
+        { id: 4, image: '/assets/4.jpg' },
+        { id: 5, image: '/assets/5.jpg' },
+        { id: 6, image: '/assets/6.jpg' },
+        { id: 7, image: '/assets/7.jpg' }
     ]
 
     return (
@@ -60,7 +62,7 @@ export const Projects = () => {
                         </SwiperSlide>
                     ))}
                 </Swiper>
-                <button className="w-full text-white bg-[#4b5926] font-semibold border border-2 rounded-full p-2 mt-9">SIMULAR GRÁTIS</button>
+                <button className="w-full text-white bg-[#4b5926] font-semibold border border-2 rounded-full p-2 mt-9"><a target='_blank' href="https://api.whatsapp.com/send?l=pt&phone=5582982220914">FAZER ORÇAMENTO</a></button>
             </div>
         </div>
     )

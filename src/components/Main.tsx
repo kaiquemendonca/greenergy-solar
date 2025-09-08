@@ -52,7 +52,7 @@ const concessionariasPorUF: Record<string, string[]> = {
 // Tarifas médias por concessionária (R$/kWh)
 // ------------------
 const tarifasEnergia: Record<string, Record<string, number>> = {
-    AL: { "Equatorial Alagoas": 0.92 },
+    AL: { "Equatorial Alagoas": 1.15 },
     SP: {
         "Enel São Paulo": 0.96,
         "CPFL Paulista": 0.94,
@@ -154,7 +154,7 @@ export const Main = () => {
         const producaoMensal = modulos * 55;
         const area = (modulos * 3.3).toFixed(1);
 
-        const economiaAnual = conta * 12;
+        const economiaAnual = conta * 12 - (600);
         const precoMin = potenciaNecessaria * 2400;
         const precoMax = potenciaNecessaria * 3000;
         const payback = Math.round(precoMax / economiaAnual);
@@ -176,7 +176,7 @@ export const Main = () => {
     return (
         <div className="w-full flex flex-col scroll-smooth">
             <div className="w-full h-[160svh] md:h-screen md:snap-always md:snap-start relative flex md:px-8">
-                <img className="brightness-50  md:brightness-100 object-cover object-right-top z-20 absolute top-0 bottom-0 left-0 right-0 w-full h-[100svh]"
+                <img className="brightness-50  md:brightness-100 object-cover object-right-top z-10 absolute top-0 bottom-0 left-0 right-0 w-full h-[100svh]"
                     src="/assets/bg-painel.jpg"/>
                 <div className="w-full max-w-[1280px] mx-auto md:flex md:items-center lg:px-0 xl:flex xl:items-center z-50">
                     <div className="w-full flex flex-col mx-auto md:flex-row md:justify-between md:mt-[56px]">
@@ -274,7 +274,7 @@ export const Main = () => {
                                         {resultado.economiaAnual.toLocaleString("pt-BR")}
                                     </p>
                                     <p>
-                                        <b>Payback Estimado:</b> {resultado.payback} meses
+                                        <b>Payback Estimado:</b> {resultado.payback} anos
                                     </p>
                                     <p>
                                         <b>Área Necessária:</b> {resultado.area} m²
