@@ -58,7 +58,7 @@ export const About = () => {
                                 </div>
                             </motion.div>
                         </div>
-                        <button className="w-full text-white bg-[#4b5926] font-semibold border border-2 rounded-full p-2 mt-9"><a className="w-full" target="_blank" href="https://api.whatsapp.com/send?l=pt&phone=5582982220914">SABER MAIS</a></button>
+                        <button className="bg-[#4b5926] text-white px-4 py-2 rounded-lg w-full hover:bg-opacity-90 transition w-full"><a className="w-full" target="_blank" href="https://api.whatsapp.com/send?l=pt&phone=5582982220914">SABER MAIS</a></button>
                     </div>
                     <div className="w-full h-full relative flex justify-end order-1 lg:order-2">
                         <div className="relative w-full h-full rounded-lg lg:max-w-[480px]  min-h-[200px]">

@@ -62,7 +62,7 @@ export const Projects = () => {
                         </SwiperSlide>
                     ))}
                 </Swiper>
-                <button className="w-full text-white bg-[#4b5926] font-semibold border border-2 rounded-full p-2 mt-9"><a target='_blank' href="https://api.whatsapp.com/send?l=pt&phone=5582982220914">FAZER ORÇAMENTO</a></button>
+                <button className="w-full bg-[#4b5926] text-white px-4 py-2 rounded-lg w-full hover:bg-opacity-90 transition mt-9"><a target='_blank' href="https://api.whatsapp.com/send?l=pt&phone=5582982220914">FAZER ORÇAMENTO</a></button>
             </div>
         </div>
     )
