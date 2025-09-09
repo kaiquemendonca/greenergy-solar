@@ -1,69 +1,97 @@
 'use client'
-import { Navigation, Pagination, Scrollbar, Autoplay } from 'swiper/modules';
+import { useState } from 'react'
+import { motion } from 'framer-motion'
 
-import { Swiper, SwiperSlide, } from 'swiper/react';
-import { motion } from 'framer-motion';
+type Project = {
+  src: string
+  alt: string
+  city: string
+  kwp: string
+  saving?: string // ex.: "R$ 820 → R$ 110/mês"
+}
 
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
-import 'swiper/css/autoplay';
-import { EffectFade, EffectCoverflow } from 'swiper/modules';
-
+const projects: Project[] = [
+  { src: '/assets/1.jpg', alt: 'Projeto 1', city: 'Maceió – AL', kwp: '5,5 kWp', saving: 'R$ 820 → R$ 110/mês' },
+  { src: '/assets/2.jpg', alt: 'Projeto 2', city: 'Arapiraca – AL', kwp: '4,2 kWp', saving: 'R$ 640 → R$ 95/mês' },
+  { src: '/assets/3.jpg', alt: 'Projeto 3', city: 'Rio Largo – AL', kwp: '6,1 kWp' },
+  { src: '/assets/4.jpg', alt: 'Projeto 4', city: 'São Miguel dos Campos – AL', kwp: '8,3 kWp', saving: 'R$ 1.020 → R$ 150/mês' },
+  { src: '/assets/5.jpg', alt: 'Projeto 5', city: 'Marechal – AL', kwp: '3,8 kWp' },
+  { src: '/assets/6.jpg', alt: 'Projeto 6', city: 'Paripueira – AL', kwp: '5,0 kWp' },
+  { src: '/assets/7.jpg', alt: 'Projeto 7', city: 'Barra de São Miguel – AL', kwp: '6,6 kWp' },
+  { src: '/assets/8.jpg', alt: 'Projeto 8', city: 'Maceió – AL', kwp: '4,6 kWp' },
+]
 
 export const Projects = () => {
+  const [open, setOpen] = useState<Project | null>(null)
 
-    const slides = [
-        { id: 1, image: '/assets/1.jpg' },
-        { id: 2, image: '/assets/2.jpg' },
-        { id: 3, image: '/assets/3.jpg' },
-        { id: 4, image: '/assets/4.jpg' },
-        { id: 5, image: '/assets/5.jpg' },
-        { id: 6, image: '/assets/6.jpg' },
-        { id: 7, image: '/assets/7.jpg' }
-    ]
+  return (
+    <section id="projetos" className="w-full bg-white py-14 md:py-16 px-4 md:px-8 flex justify-center">
+      <div className="w-full xl:max-w-7xl">
+        {/* header */}
+        <header className="mb-8 md:mb-10">
+          <p className="text-[#4b5926] font-bold text-sm uppercase tracking-wider">Projetos</p>
+          <h2 className="text-2xl md:text-[32px] leading-tight text-gray-800 mt-2">
+            Clientes que economizam de verdade <span aria-hidden>💡</span>
+          </h2>
+          <p className="text-sm md:text-[15px] text-gray-600 mt-2">
+            Instalações reais no estado de Alagoas. Passe o mouse para ver os detalhes e clique para ampliar.
+          </p>
+        </header>
 
-    return (
-        <div id="projects" className="w-full overflow-hidden py-10 bg-white px-4 md:flex md:justify-center md:items-center ">
-            <div className='xl:max-w-7xl'>
-
-                <div className="w-full h-full flex flex-col justify-center order-2 lg:order-1">
-                    <h1 className="text-[#4b5926] font-bold text-lg uppercase mb-6">Projetos</h1>
-                    <h2 className="w-full text-2xl md:text-[35px] leading-[30px] lg:text-[30px] lg:leading-[35px] 2xl:text-[35px] tracking-[-2.5%] text-gray-600 mb-10 md:mb-10 lg:mb-10 lg:text-left lg:relative lg:top-0 lg:w-full lg:px-0">Clientes inteligentes que decidicidiram economizar de verdade 💸 e ainda ajudar o planeta 🌎</h2>
-                </div>
-                <Swiper
-                    modules={[Autoplay]}
-                    slidesPerView={7}
-                    loop={true}
-                    autoplay={{
-                        delay: 0,
-                        disableOnInteraction: false,
-                    }}
-                    speed={3000}
-
-                    spaceBetween={10}
-                    breakpoints={{
-                        320: { slidesPerView: 2 },
-                        640: { slidesPerView: 3 },
-                        1024: { slidesPerView: 7 },
-                    }}
-                >
-                    {slides.map((slide, idx) => (
-                        <SwiperSlide key={slide.id}>
-                            <div className="w-full flex justify-center">
-                                <img
-                                    src={slide.image}
-                                    alt={`Serviço ${idx + 1}`}
-                                    className="rounded-xl w-64 h-64 md:h-84 object-cover shadow-lg transition-transform duration-300 hover:scale-105"
-                                />
-                            </div>
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
-                <button className="w-full bg-[#4b5926] text-white px-4 py-2 rounded-lg w-full hover:bg-opacity-90 transition mt-9"><a target='_blank' href="https://api.whatsapp.com/send?l=pt&phone=5582982220914">FAZER ORÇAMENTO</a></button>
-            </div>
+        {/* grid de imagens */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {projects.map((p, i) => (
+            <figure
+              key={i}
+              className="group relative rounded-2xl overflow-hidden ring-1 ring-black/5 bg-gray-100 aspect-[4/3] cursor-zoom-in"
+              onClick={() => setOpen(p)}
+            >
+              <img
+                src={p.src}
+                alt={p.alt}
+                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.05]"
+                loading="lazy"
+              />
+              {/* overlay */}
+              <figcaption className="absolute inset-0 flex flex-col justify-end p-3 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition">
+                <p className="text-white text-sm font-semibold">
+                  {p.city} • {p.kwp}
+                </p>
+                {p.saving && (
+                  <span className="text-[11px] text-white/90">
+                    Economia estimada: {p.saving}
+                  </span>
+                )}
+              </figcaption>
+            </figure>
+          ))}
         </div>
-    )
+      </div>
+
+      {/* LIGHTBOX simples */}
+      {open && (
+        <div
+          className="fixed inset-0 z-[70] bg-black/80 backdrop-blur-[2px] grid place-items-center p-4"
+          onClick={() => setOpen(null)}
+          role="dialog"
+          aria-label={`Foto ampliada: ${open.alt}`}
+        >
+          <div className="relative max-w-5xl w-full">
+            <button
+              onClick={() => setOpen(null)}
+              className="absolute -top-10 right-0 text-white/80 hover:text-white text-sm"
+              aria-label="Fechar"
+            >
+              Fechar ✕
+            </button>
+            <img src={open.src} alt={open.alt} className="w-full h-auto rounded-2xl ring-1 ring-white/10" />
+            <div className="mt-3 text-white/90 text-sm">
+              <strong>{open.city}</strong> • {open.kwp}
+              {open.saving && <> — <span>Economia estimada: {open.saving}</span></>}
+            </div>
+          </div>
+        </div>
+      )}
+    </section>
+  )
 }
