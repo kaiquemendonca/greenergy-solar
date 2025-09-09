@@ -345,7 +345,7 @@ export const Main = () => {
                                                     value={form.cep}
                                                     onChange={handleChange}
                                                     placeholder="00000000"
-                                                    required
+                                                   
                                                 />
                                                 <InputField
                                                     id="uf"
@@ -366,9 +366,8 @@ export const Main = () => {
                                                         value={form.conta}
                                                         onChange={handleChange}
                                                         placeholder="Ex.: 350,00"
-                                                        min="0"
-                                                        step="0.01"
-                                                        required
+                                        
+                                                        
                                                     />
                                                 </div>
 
@@ -380,7 +379,7 @@ export const Main = () => {
                                                         value={form.concessionaria}
                                                         onChange={handleChange}
                                                         disabled={concessionarias.length === 0}
-                                                        required
+                                                        
                                                     >
                                                         <option value="">Selecione a Concessionária</option>
                                                         {concessionarias.map((c, i) => (
@@ -399,7 +398,7 @@ export const Main = () => {
                                                         value={form.whatsapp}
                                                         onChange={handleChange}
                                                         placeholder="(82) 9 9999-9999"
-                                                        required
+                                                        
                                                     />
                                                     <p className="mt-1 text-xs text-gray-500">
                                                         Usamos apenas para enviar a simulação e tirar dúvidas. Sem spam.
