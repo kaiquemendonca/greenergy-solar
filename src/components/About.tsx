@@ -135,7 +135,7 @@ export const About = () => {
             <div className="relative w-full lg:max-w-[420px] min-h-[240px] lg:min-h-[540px]">
               <div className="absolute inset-0 rounded-2xl overflow-hidden ring-1 ring-black/5">
                 <img
-                  src="/assets/clientes/equipe.jpg"
+                  src="/assets/clientes/equipe.JPG"
                   alt="Equipe Solar Greenergy e projeto de usina"
                   className="absolute inset-0 h-full w-full object-cover object-center"
                 />

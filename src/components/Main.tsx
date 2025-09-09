@@ -297,12 +297,12 @@ export const Main = () => {
 
                             <div className="px-4 md:px-0 mb-10 lg:mb-0 ">
                                 <div className="w-full">
-                                    <span className="inline-block mt-[120px] md:mt-5 shadow-lg p-2 rounded-lg bg-white/40 backdrop-blur-sm">
+                                    <span className="inline-block mt-[40px] md:mt-5 shadow-lg p-2 rounded-lg bg-white/40 backdrop-blur-sm">
                                         <img height={28} width={300} alt="Solar Greenergy" src="/assets/solar 1.png" />
                                     </span>
 
                                     {/* Headline + subheadline */}
-                                    <h1 className="text-white font-semibold tracking-wide mt-[10px] md:mt-5 lg:mt-[2.25rem] text-[30px] leading-[43px] md:text-[28px] md:leading-[40px] lg:text-[36px] lg:leading-[54px]">
+                                    <h1 className="text-white font-semibold tracking-wide mt-[10px] md:mt-5 lg:mt-[2.25rem] text-[22px] leading-[43px] md:text-[28px] md:leading-[40px] lg:text-[36px] lg:leading-[54px]">
                                         Reduza sua conta de luz em até 95% com energia solar em Alagoas.
                                     </h1>
                                     <p className="text-white/90 mt-3 md:mt-4 max-w-[36ch] text-base md:text-[15px] leading-6">

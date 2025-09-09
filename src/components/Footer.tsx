@@ -17,7 +17,7 @@ export const Footer = () => {
           <div className="flex w-full md:w-auto gap-3">
             <a
               href="#calc"
-              className="flex-1 md:flex-none inline-flex items-center justify-center h-11 px-4 rounded-lg bg-white text-[#2f3a17] font-semibold hover:opacity-90"
+              className="text-xs flex-1 md:flex-none inline-flex items-center justify-center h-11 px-4 rounded-lg bg-white text-[#2f3a17] font-semibold hover:opacity-90"
             >
               QUERO MINHA SIMULAÇÃO GRATUITA
             </a>
@@ -25,7 +25,7 @@ export const Footer = () => {
               href="https://api.whatsapp.com/send?l=pt&phone=5582982220914"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 md:flex-none inline-flex items-center justify-center h-11 px-4 rounded-lg bg-black/15 hover:bg-black/20 font-medium"
+              className="text-xs flex-1 md:flex-none inline-flex items-center justify-center h-11 px-4 rounded-lg bg-black/15 hover:bg-black/20 font-semibold"
               aria-label="Falar no WhatsApp"
             >
               FALAR NO WHATSAPP

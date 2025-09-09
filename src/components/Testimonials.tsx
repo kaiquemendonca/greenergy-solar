@@ -20,7 +20,7 @@ const testimonials: Testimonial[] = [
     name: 'Mauro Mendonça',
     city: 'Maceió – AL',
     quote: 'Equipe impecável do projeto à homologação. A conta despencou no 1º mês.',
-    photo: '/assets/clientes/mauro.jpg',
+    photo: '/assets/clientes/mauro.JPG',
     saving: 'R$ 520 → R$ 70/mês',
     details:
       'Sistema 5,5 kWp | Telhado fibrocimento | Payback estimado: 4,2 anos | Módulos mono PERC 555W',
@@ -29,7 +29,7 @@ const testimonials: Testimonial[] = [
     name: 'Hop Bros Cervejaria',
     city: 'Maceió – AL',
     quote: 'Projeto bem explicado, acompanhamento total. Recomendo demais.',
-    photo: '/assets/clientes/hop.jpg',
+    photo: '/assets/clientes/hop.JPG',
     saving: 'R$ 1640 → R$ 120/mês',
     details:
       'Sistema 4,2 kWp | Telhado cerâmico | Payback estimado: 4,5 anos | Microinversores',
@@ -38,7 +38,7 @@ const testimonials: Testimonial[] = [
     name: 'Carlos',
     city: 'São Miguel dos Campos – AL',
     quote: 'Instalação rápida e acabamento top. Payback dentro do previsto.',
-    photo: '/assets/clientes/3.jpg',
+    photo: '/assets/clientes/3.JPG',
     saving: 'R$ 1.020 → R$ 150/mês',
     details:
       'Sistema 8,3 kWp | Estrutura alumínio | Payback: 4,0 anos | Garantia 12 anos (módulos)',
